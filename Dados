@@ -1,0 +1,63 @@
+leitor de dados 
+import java.util.Scanner;
+
+public class CalculadoraAltura {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double[] alturas = new double[10];
+        String[] sexos = new String[10];
+
+        // Lendo os dados de altura e sexo das pessoas
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Digite a altura da pessoa " + (i + 1) + ": ");
+            alturas[i] = scanner.nextDouble();
+            System.out.print("Digite o sexo da pessoa " + (i + 1) + " (M/F): ");
+            sexos[i] = scanner.next().toUpperCase();
+        }
+
+        // Calculando a maior e menor altura
+        double maiorAltura = alturas[0];
+        double menorAltura = alturas[0];
+
+        for (int i = 1; i < 10; i++) {
+            if (alturas[i] > maiorAltura) {
+                maiorAltura = alturas[i];
+            }
+            if (alturas[i] < menorAltura) {
+                menorAltura = alturas[i];
+            }
+        }
+
+        // Calculando a média de altura dos homens
+        double somaAlturaHomens = 0;
+        int contadorHomens = 0;
+
+        for (int i = 0; i < 10; i++) {
+            if (sexos[i].equals("M")) {
+                somaAlturaHomens += alturas[i];
+                contadorHomens++;
+            }
+        }
+
+        double mediaAlturaHomens = somaAlturaHomens / contadorHomens;
+
+        // Calculando o número de mulheres
+        int contadorMulheres = 0;
+
+        for (int i = 0; i < 10; i++) {
+            if (sexos[i].equals("F")) {
+                contadorMulheres++;
+            }
+        }
+
+        // Imprimindo os resultados
+        System.out.println("Maior altura: " + maiorAltura);
+        System.out.println("Menor altura: " + menorAltura);
+        System.out.println("Média de altura dos homens: " + mediaAlturaHomens);
+        System.out.println("Número de mulheres: " + contadorMulheres);
+
+        scanner.close();
+    }
+}
